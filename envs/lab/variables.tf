@@ -1,0 +1,57 @@
+variable "project_id" {
+  description = "cloud.ru Evolution project ID."
+  type        = string
+}
+
+variable "zone" {
+  type    = string
+  default = "ru.AZ-1"
+}
+
+variable "vpc_id" {
+  type = string
+}
+
+variable "subnet_name" {
+  type    = string
+  default = "subnet-lab"
+}
+
+variable "subnet_cidr" {
+  type    = string
+  default = "192.168.65.0/24"
+}
+
+variable "security_group_name" {
+  type    = string
+  default = "lab-ssh"
+}
+
+variable "ssh_allowed_cidrs" {
+  type = list(string)
+}
+
+variable "image_id" {
+  description = "Boot image (Ubuntu 24.04)."
+  type        = string
+}
+
+variable "nodes" {
+  description = "Lab VMs, keyed by short name."
+  type = map(object({
+    name           = string
+    description    = optional(string)
+    flavor         = string
+    disk_size      = number
+    ip_address     = string
+    public_ip      = optional(bool, false)
+    disk_name      = optional(string)
+    interface_name = optional(string)
+    public_ip_name = optional(string)
+  }))
+
+  validation {
+    condition     = length([for n in var.nodes : n if n.public_ip]) == 1
+    error_message = "Exactly one node (the bastion) must have a public IP."
+  }
+}

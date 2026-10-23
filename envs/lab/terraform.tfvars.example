@@ -1,0 +1,12 @@
+project_id = "00000000-0000-0000-0000-000000000000"
+vpc_id     = "00000000-0000-0000-0000-000000000000"
+image_id   = "00000000-0000-0000-0000-000000000000"
+
+# Your own IP, not 0.0.0.0/0.
+ssh_allowed_cidrs = ["203.0.113.10/32"]
+
+nodes = {
+  lab1 = { name = "lab-1", flavor = "gen-4-8", disk_size = 50, ip_address = "192.168.65.4", public_ip = true }
+  lab2 = { name = "lab-2", flavor = "gen-2-8", disk_size = 50, ip_address = "192.168.65.5" }
+  lab3 = { name = "lab-3", flavor = "gen-2-8", disk_size = 50, ip_address = "192.168.65.6" }
+}
