@@ -13,6 +13,7 @@ modules/
   vm/        boot disk, network interface, optional public IP, VM
 envs/
   lab/       the lab itself: nodes are a map, one module call per node
+aws-localstack/  the same approach on AWS APIs (VPC/NAT/endpoint, S3 state with lock file, IRSA), see its README
 ```
 
 ```mermaid
@@ -74,10 +75,15 @@ A single apply would have destroyed the old rule first and could have locked the
 
 `.github/workflows/ci.yml`, all actions pinned by commit SHA:
 
-- `terraform fmt -check`, `init -backend=false`, `validate` for the env and both modules
+- `terraform fmt -check`, `init -backend=false`, `validate` for the env, both modules and the AWS lab
 - `tflint` with the full Terraform ruleset
 - `trivy config` (HIGH/CRITICAL fail the build)
 - `gitleaks` over the whole history
+
+## AWS
+
+[`aws-localstack/`](aws-localstack/) applies the same ideas to AWS without an account: VPC with NAT and an S3 gateway endpoint,
+remote state in S3 with native locking, and an IRSA role for the url-shortener ServiceAccount.
 
 ## Next
 
