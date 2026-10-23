@@ -1,9 +1,11 @@
 variable "project_id" {
-  type = string
+  description = "cloud.ru Evolution project ID."
+  type        = string
 }
 
 variable "zone" {
-  type = string
+  description = "Availability zone, e.g. ru.AZ-1."
+  type        = string
 }
 
 variable "vpc_id" {
@@ -12,29 +14,35 @@ variable "vpc_id" {
 }
 
 variable "subnet_name" {
-  type = string
+  description = "Subnet name."
+  type        = string
 }
 
 variable "subnet_cidr" {
-  type = string
+  description = "Subnet address range."
+  type        = string
 }
 
 variable "gateway" {
-  type = string
+  description = "Default gateway inside the subnet."
+  type        = string
 }
 
 variable "dns_servers" {
-  type    = list(string)
-  default = ["8.8.8.8"]
+  description = "DNS servers handed out in the subnet."
+  type        = list(string)
+  default     = ["8.8.8.8"]
 }
 
 variable "security_group_name" {
-  type = string
+  description = "Security group name."
+  type        = string
 }
 
 variable "security_group_description" {
-  type    = string
-  default = "allow ssh access"
+  description = "Security group description."
+  type        = string
+  default     = "allow ssh access"
 }
 
 variable "ssh_allowed_cidrs" {

@@ -1,18 +1,22 @@
 variable "project_id" {
-  type = string
+  description = "cloud.ru Evolution project ID."
+  type        = string
 }
 
 variable "zone" {
-  type = string
+  description = "Availability zone, e.g. ru.AZ-1."
+  type        = string
 }
 
 variable "name" {
-  type = string
+  description = "VM name."
+  type        = string
 }
 
 variable "description" {
-  type    = string
-  default = null
+  description = "VM description."
+  type        = string
+  default     = null
 }
 
 variable "flavor" {
@@ -21,7 +25,8 @@ variable "flavor" {
 }
 
 variable "image_id" {
-  type = string
+  description = "Boot image ID."
+  type        = string
 }
 
 variable "disk_size" {
@@ -30,21 +35,25 @@ variable "disk_size" {
 }
 
 variable "disk_type" {
-  type    = string
-  default = "SSD"
+  description = "Disk type name (SSD, HDD)."
+  type        = string
+  default     = "SSD"
 }
 
 variable "disk_name" {
-  type    = string
-  default = null
+  description = "Boot disk name; defaults to <name>-disk."
+  type        = string
+  default     = null
 }
 
 variable "subnet_id" {
-  type = string
+  description = "Subnet for the network interface."
+  type        = string
 }
 
 variable "security_group_ids" {
-  type = list(string)
+  description = "Security groups of the interface."
+  type        = list(string)
 }
 
 variable "ip_address" {
@@ -53,8 +62,9 @@ variable "ip_address" {
 }
 
 variable "interface_name" {
-  type    = string
-  default = null
+  description = "Interface name; defaults to <name>-eth0."
+  type        = string
+  default     = null
 }
 
 variable "public_ip" {
@@ -64,6 +74,7 @@ variable "public_ip" {
 }
 
 variable "public_ip_name" {
-  type    = string
-  default = null
+  description = "Public IP name; defaults to <name>-ip."
+  type        = string
+  default     = null
 }

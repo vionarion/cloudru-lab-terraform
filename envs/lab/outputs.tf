@@ -1,9 +1,11 @@
 output "bastion_ip" {
-  value = one([for k, vm in module.vm : vm.public_ip if vm.public_ip != null])
+  description = "Public IP of the bastion node."
+  value       = one([for k, vm in module.vm : vm.public_ip if vm.public_ip != null])
 }
 
 output "private_ips" {
-  value = { for k, vm in module.vm : k => vm.private_ip }
+  description = "Private IPs by node."
+  value       = { for k, vm in module.vm : k => vm.private_ip }
 }
 
 output "ssh_config" {

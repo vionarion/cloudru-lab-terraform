@@ -4,31 +4,37 @@ variable "project_id" {
 }
 
 variable "zone" {
-  type    = string
-  default = "ru.AZ-1"
+  description = "Availability zone, e.g. ru.AZ-1."
+  type        = string
+  default     = "ru.AZ-1"
 }
 
 variable "vpc_id" {
-  type = string
+  description = "VPC the subnet belongs to."
+  type        = string
 }
 
 variable "subnet_name" {
-  type    = string
-  default = "subnet-lab"
+  description = "Subnet name."
+  type        = string
+  default     = "subnet-lab"
 }
 
 variable "subnet_cidr" {
-  type    = string
-  default = "192.168.65.0/24"
+  description = "Subnet address range."
+  type        = string
+  default     = "192.168.65.0/24"
 }
 
 variable "security_group_name" {
-  type    = string
-  default = "lab-ssh"
+  description = "Security group name."
+  type        = string
+  default     = "lab-ssh"
 }
 
 variable "ssh_allowed_cidrs" {
-  type = list(string)
+  description = "Where SSH (22/tcp) is allowed from."
+  type        = list(string)
 }
 
 variable "image_id" {
