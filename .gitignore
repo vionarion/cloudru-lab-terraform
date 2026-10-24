@@ -6,3 +6,4 @@
 envs/*/imports.tf*
 crash.log
 *.tfplan
+envs/*/backend.hcl

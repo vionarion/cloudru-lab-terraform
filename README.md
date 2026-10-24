@@ -46,7 +46,21 @@ terraform plan
 ```
 
 Credentials never go into code or tfvars: the provider reads them from the environment.
-`*.tfvars` and state are git-ignored.
+`*.tfvars` and `backend.hcl` are git-ignored.
+
+## Remote state
+
+State is stored in a self-hosted S3 ([RustFS](https://github.com/vionarion/docker-apps/tree/main/apps/rustfs)) with a native lock file (`use_lockfile`), bucket versioning on.
+cloud.ru Object Storage was the first choice, but the project's tenant was not provisioned (`NoSuchTenant`).
+
+```bash
+cd envs/lab
+cp backend.hcl.example backend.hcl
+export AWS_ACCESS_KEY_ID=...  AWS_SECRET_ACCESS_KEY=...   # storage key, not the cloud.ru one
+terraform init -backend-config=backend.hcl
+```
+
+Checked: `init -migrate-state` moved 15 resources, `plan` shows no changes, and while a lock file exists the next run fails with `Error acquiring the state lock`.
 
 ## How the import was done
 
@@ -87,6 +101,5 @@ remote state in S3 with native locking, and an IRSA role for the url-shortener S
 
 ## Next
 
-- Remote state in cloud.ru Object Storage (S3 backend with lock file)
 - `plan` on pull requests, `apply` from CI with a protected environment
 - cloud-init for new nodes (user, SSH key, k3s join)
