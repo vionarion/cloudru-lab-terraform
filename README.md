@@ -1,3 +1,5 @@
+![cloudru-lab-terraform](assets/banner.svg)
+
 # cloudru-lab-terraform
 
 ![ci](https://github.com/vionarion/terraform-lab/actions/workflows/ci.yml/badge.svg)
