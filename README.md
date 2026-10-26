@@ -1,5 +1,8 @@
 # cloudru-lab-terraform
 
+![ci](https://github.com/vionarion/terraform-lab/actions/workflows/ci.yml/badge.svg)
+![license](https://img.shields.io/github/license/vionarion/terraform-lab)
+
 Terraform for a small Kubernetes lab on [cloud.ru Evolution](https://cloud.ru/): one bastion with a public IP and two private nodes in one subnet.
 The lab runs k3s, Vault (HA, Raft) and the [url-shortener](https://github.com/vionarion/go-projects/tree/main/url-shortener) service.
 
